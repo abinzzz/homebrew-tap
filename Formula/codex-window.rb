@@ -5,6 +5,11 @@ class CodexWindow < Formula
   sha256 "323134b038735cf7c35fe204b6de80b1dfda8d46d6d0d8d97d5c6e931ed53aea"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/abinzzz/homebrew-tap/releases/download/codex-window-0.1.0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1e7417ec10062fc828ab87a0b2b6a7147cb30717e8482cc875bcceafae04020d"
+  end
+
   depends_on "python@3.13"
 
   def install

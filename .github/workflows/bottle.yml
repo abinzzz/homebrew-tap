@@ -21,6 +21,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          for file in *--*.bottle.tar.gz; do mv "$file" "${file/--/-}"; done
           gh release create codex-window-0.1.0 --title 'codex-window 0.1.0 bottles' --notes 'Homebrew prebuilt package.' *.bottle.tar.gz *.bottle.json
       - uses: actions/upload-artifact@v4
         with:
