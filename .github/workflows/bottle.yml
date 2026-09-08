@@ -1,0 +1,30 @@
+name: bottle
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bottle:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tap
+        run: |
+          brew tap abinzzz/tap
+          cp Formula/codex-window.rb "$(brew --repository abinzzz/tap)/Formula/codex-window.rb"
+      - name: Build and test
+        run: |
+          brew install --build-bottle abinzzz/tap/codex-window
+          brew test abinzzz/tap/codex-window
+          brew bottle --json --no-rebuild --root-url=https://github.com/abinzzz/homebrew-tap/releases/download/codex-window-0.1.0 abinzzz/tap/codex-window
+      - name: Publish bottle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create codex-window-0.1.0 --title 'codex-window 0.1.0 bottles' --notes 'Homebrew prebuilt package.' *.bottle.tar.gz *.bottle.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bottle
+          path: |
+            *.bottle.tar.gz
+            *.bottle.json

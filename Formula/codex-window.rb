@@ -10,9 +10,10 @@ class CodexWindow < Formula
   def install
     libexec.install "codex_window"
     (bin/"codex-window").write <<~PYTHON
-      #!#{Formula["python@3.13"].opt_bin}/python3.13
+      #!/usr/bin/env python3.13
       import sys
-      sys.path.insert(0, #{libexec.to_s.inspect})
+      from pathlib import Path
+      sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"libexec"))
       from codex_window.cli import main
       raise SystemExit(main())
     PYTHON
