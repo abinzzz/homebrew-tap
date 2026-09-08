@@ -6,7 +6,6 @@ class Emberloop < Formula
   license "MIT"
 
   depends_on "python@3.13"
-  conflicts_with "codex-window", because: "Emberloop replaces codex-window"
 
   def install
     libexec.install "codex_window"
