@@ -11,18 +11,18 @@ jobs:
       - name: Install tap
         run: |
           brew tap abinzzz/tap
-          cp Formula/codex-window.rb "$(brew --repository abinzzz/tap)/Formula/codex-window.rb"
+          cp Formula/emberloop.rb "$(brew --repository abinzzz/tap)/Formula/emberloop.rb"
       - name: Build and test
         run: |
-          brew install --build-bottle abinzzz/tap/codex-window
-          brew test abinzzz/tap/codex-window
-          brew bottle --json --no-rebuild --root-url=https://github.com/abinzzz/homebrew-tap/releases/download/codex-window-0.1.0 abinzzz/tap/codex-window
+          brew install --build-bottle abinzzz/tap/emberloop
+          brew test abinzzz/tap/emberloop
+          brew bottle --json --no-rebuild --root-url=https://github.com/abinzzz/homebrew-tap/releases/download/emberloop-0.2.0 abinzzz/tap/emberloop
       - name: Publish bottle
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           for file in *--*.bottle.tar.gz; do mv "$file" "${file/--/-}"; done
-          gh release create codex-window-0.1.0 --title 'codex-window 0.1.0 bottles' --notes 'Homebrew prebuilt package.' *.bottle.tar.gz *.bottle.json
+          gh release create emberloop-0.2.0 --title 'emberloop 0.2.0 bottles' --notes 'Homebrew prebuilt package.' *.bottle.tar.gz *.bottle.json
       - uses: actions/upload-artifact@v4
         with:
           name: bottle
