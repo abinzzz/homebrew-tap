@@ -5,6 +5,11 @@ class Emberloop < Formula
   sha256 "744e883e234b057923ae18dacf48a55cd94c3d25472f44951cedacb79b20460b"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/abinzzz/homebrew-tap/releases/download/emberloop-0.2.0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "61896eef9dfa73b6b866bba28b814289da2631170a8bba03bb26332fabf126b5"
+  end
+
   depends_on "python@3.13"
 
   def install
